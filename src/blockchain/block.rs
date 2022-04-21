@@ -5,6 +5,7 @@ use louis_dor::current_time;
 
 #[derive(Debug, Clone)]
 pub struct Block {
+    pub index: u32,
     pub hash: String,
     pub previous_hash: String,
     pub timestamp: u64,
@@ -14,12 +15,14 @@ pub struct Block {
 
 impl Block {
     pub fn new(
+        index: u32,
         previous_hash: String,
         timestamp: u64,
         transactions: Vec<Transaction>,
         nonce: u64,
     ) -> Block {
         Block {
+            index,
             hash: String::new(),
             previous_hash,
             timestamp,
@@ -29,8 +32,8 @@ impl Block {
     }
 
     pub fn hash(&mut self) -> String {
-
         let mut sha = Sha256::new();
+        sha.input_str(&self.index.to_string());
         sha.input_str(&self.previous_hash);
         sha.input_str(&self.timestamp.to_string());
         sha.input_str(format!("{:?}", &self.transactions).to_string().as_str());
@@ -40,10 +43,12 @@ impl Block {
     }
 
     pub fn new_genesis_block() -> Block {
+        let mut transactions = vec![Transaction::new_genesis_transaction()];
         let mut block = Block::new(
+            0,
             String::new(),
             current_time(),
-            Vec::new(),
+            transactions,
             0,
         );
         block.mine_block(1);
@@ -62,5 +67,4 @@ impl Block {
             self.nonce = nonce;
         }
     }
-
 }
