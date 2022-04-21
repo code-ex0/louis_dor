@@ -9,8 +9,3 @@ pub fn current_time() -> u64
         Err(_) => {0}
     }
 }
-
-pub fn calculate_merkle () -> &'static str
-{
-    todo!()
-}
