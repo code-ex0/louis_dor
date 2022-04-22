@@ -12,11 +12,11 @@ members = [
 
 [[bin]]
 name = "local"
-path = "src/local.rs"
+path = "src/build/local.rs"
 
 [[bin]]
 name = "remote"
-path = "src/remote.rs"
+path = "src/build/remote.rs"
 
 [dependencies]
 blockchain = { path = "src/blockchain" }
