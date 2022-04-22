@@ -1,7 +1,6 @@
-use crate::blockchain::{Transaction};
+use crate::{current_time, Transaction};
 use crypto::digest::Digest;
 use crypto::sha2::{Sha256};
-use louis_dor::current_time;
 
 #[derive(Debug, Clone)]
 pub struct Block {

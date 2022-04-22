@@ -1,14 +1,7 @@
-pub mod blockchain;
 use std::fmt::format;
 use std::str::FromStr;
-use crypto::ed25519::keypair;
-use crypto::util::secure_memset;
-use ed25519_dalek::{Keypair, PublicKey};
 use rand::Rng;
-use rustc_serialize::hex;
-use rustc_serialize::hex::{ToHex, FromHex};
-use louis_dor::{current_time};
-use blockchain::{Block, Blockchain, Wallet, Transaction};
+use blockchain::{Wallet, Block, Blockchain, Transaction};
 
 fn input_user() -> String {
     let mut input = String::new();
@@ -18,6 +11,9 @@ fn input_user() -> String {
 
 fn main() {
     generate_fake_data();
+    let mut blockchain = Blockchain::new();
+    blockchain.genesis_block();
+    println!("Welcome to the blockchain!");
 
     let mut wallet = Wallet::new();
     println!("Your secret key is: {:?}", wallet.secret_to_string());
@@ -26,17 +22,6 @@ fn main() {
     let mut wallet2 = Wallet::new();
     println!("Your secret key is: {:?}", wallet2.secret_to_string());
     println!("Your public key is: {:?}", wallet2.public_to_string());
-
-    let mut transaction = Transaction::new(Some(wallet.public_to_string()), Some(wallet2.public_to_string()), 100);
-    transaction.sign(wallet.to_keypair());
-    println!("Your transaction is: {:#?}", transaction);
-    println!("the transaction is valid: {}", transaction.verify());
-
-
-
-    let mut blockchain = Blockchain::new();
-    blockchain.genesis_block();
-    println!("Welcome to the blockchain!");
 
     loop {
         println!("Enter a command: ");
@@ -89,8 +74,6 @@ fn generate_fake_data() {
         secret_key: keypair.secret,
     };
 
-
-    // make first transaction with genesis wallet
     for _ in 0..2000 {
         let wallet = Wallet::new();
         wallets.push(wallet);

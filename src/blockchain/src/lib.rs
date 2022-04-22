@@ -1,3 +1,13 @@
+mod blockchain;
+mod block;
+mod transaction;
+mod wallet;
+
+pub use blockchain::Blockchain;
+pub use block::Block;
+pub use transaction::Transaction;
+pub use wallet::Wallet;
+
 use std::time::{
     SystemTime,
 };
