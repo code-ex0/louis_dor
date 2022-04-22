@@ -1,7 +1,5 @@
-use std::fmt::format;
-use std::str::FromStr;
 use rand::Rng;
-use blockchain::{Wallet, Block, Blockchain, Transaction};
+use blockchain::{Wallet, Blockchain, Transaction};
 
 fn input_user() -> String {
     let mut input = String::new();
@@ -15,11 +13,11 @@ fn main() {
     blockchain.genesis_block();
     println!("Welcome to the blockchain!");
 
-    let mut wallet = Wallet::new();
+    let wallet = Wallet::new();
     println!("Your secret key is: {:?}", wallet.secret_to_string());
     println!("Your public key is: {:?}", wallet.public_to_string());
 
-    let mut wallet2 = Wallet::new();
+    let wallet2 = Wallet::new();
     println!("Your secret key is: {:?}", wallet2.secret_to_string());
     println!("Your public key is: {:?}", wallet2.public_to_string());
 
@@ -88,7 +86,7 @@ fn generate_fake_data() {
     }
     blockchain.mine_block(2, genesis_wallet.public_to_string(), 10);
 
-    for j in 0..100 {
+    for _ in 0..100 {
         for _ in 0..100 {
             let sender = rng.gen_range(0, len);
             let mut receiver = rng.gen_range(0, len);

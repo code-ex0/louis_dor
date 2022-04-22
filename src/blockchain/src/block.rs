@@ -42,7 +42,7 @@ impl Block {
     }
 
     pub fn new_genesis_block() -> Block {
-        let mut transactions = vec![Transaction::new_genesis_transaction()];
+        let transactions = vec![Transaction::new_genesis_transaction()];
         let mut block = Block::new(
             0,
             String::new(),

@@ -14,7 +14,7 @@ impl Blockchain {
         }
     }
     pub fn genesis_block(&mut self) {
-        let mut block = Block::new_genesis_block();
+        let block = Block::new_genesis_block();
         self.chain.push(block);
     }
 
@@ -36,7 +36,7 @@ impl Blockchain {
         self.chain.last().unwrap()
     }
 
-    pub fn mine_block(&mut self, difficulty: u64, address: String, reward: u64) {
+    pub fn mine_block(&mut self, difficulty: u64, _address: String, _reward: u64) {
         let mut block = Block::new(
             self.last_block().index + 1,
             self.last_block().hash.clone(),
