@@ -1,11 +1,10 @@
-use louis_dor::current_time;
 use ed25519_dalek::{Keypair, SignatureError, Signer, Verifier};
 use ed25519_dalek::PublicKey;
 use ed25519_dalek::Signature;
 use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 use rustc_serialize::hex::{ToHex, FromHex};
-use crate::Wallet;
+use crate::{current_time, Wallet};
 
 #[derive(Debug, Clone)]
 pub struct Transaction {

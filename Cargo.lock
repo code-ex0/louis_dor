@@ -12,6 +12,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "blockchain"
+version = "0.1.0"
+dependencies = [
+ "ed25519-dalek",
+ "rand 0.7.3",
+ "rust-crypto",
+ "rustc-serialize",
+]
+
+[[package]]
 name = "byteorder"
 version = "1.4.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -120,10 +130,8 @@ checksum = "efaa7b300f3b5fe8eb6bf21ce3895e1751d9665086af2d64b42f19701015ff4f"
 name = "louis_dor"
 version = "0.1.0"
 dependencies = [
- "ed25519-dalek",
+ "blockchain",
  "rand 0.7.3",
- "rust-crypto",
- "rustc-serialize",
 ]
 
 [[package]]
@@ -131,6 +139,10 @@ name = "opaque-debug"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "624a8340c38c1b80fd549087862da4ba43e08858af025b236e509b6649fc13d5"
+
+[[package]]
+name = "p2p"
+version = "0.1.0"
 
 [[package]]
 name = "ppv-lite86"

@@ -1,6 +1,4 @@
-use crate::blockchain::{Block, Transaction};
-use crate::current_time;
-
+use crate::{Block, current_time, Transaction};
 #[derive(Debug, Clone)]
 pub struct Blockchain {
     pub chain: Vec<Block>,

@@ -4,9 +4,20 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+members = [
+    "src/blockchain",
+    "src/p2p",
+]
+
+[[bin]]
+name = "local"
+path = "src/local.rs"
+
+[[bin]]
+name = "remote"
+path = "src/remote.rs"
 
 [dependencies]
-rust-crypto = "0.2"
+blockchain = { path = "src/blockchain" }
 rand = "0.7"
-rustc-serialize = "0.3.24"
-ed25519-dalek = "1.0.0-pre.3"
