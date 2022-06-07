@@ -13,6 +13,17 @@ impl Blockchain {
             temp_transactions: Vec::new(),
         }
     }
+
+    pub fn new_block(&self, proof: u64, previous_hash: String) -> Block {
+        let last_block = self.chain.last().unwrap();
+        let block = Block::new(last_block.index + 1, previous_hash, current_time(), self.temp_transactions.clone(), 0);
+        block
+    }
+
+    pub fn add_block(&mut self, block: Block) {
+        self.chain.push(block);
+    }
+
     pub fn genesis_block(&mut self) {
         let block = Block::new_genesis_block();
         self.chain.push(block);
